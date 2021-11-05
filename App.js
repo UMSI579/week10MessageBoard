@@ -91,14 +91,6 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
     paddingTop: '15%'
   },
-  selectUserContainer: {
-    flex: 0.1,
-    flexDirection: 'row',
-    alignItems: 'flex-end',
-    justifyContent: 'space-evenly',
-    width: '90%',
-    paddingBottom: '3%'
-  },
   inputContainer: {
     flex: 0.1,
     flexDirection: 'row',
@@ -112,7 +104,7 @@ const styles = StyleSheet.create({
     borderWidth: 1, 
     height: 40
   },
-  chatContainer: {
+  messageBoardContainer: {
     flex: 0.6,
     width: '100%',
     // justifyContent: 'flex-start',
