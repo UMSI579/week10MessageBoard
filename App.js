@@ -63,7 +63,7 @@ export default function App() {
           }}
         />
       </View>
-      <View style={styles.chatContainer}>
+      <View style={styles.messageBoardContainer}>
         <FlatList
           data={messages}
           renderItem={({item})=>{
