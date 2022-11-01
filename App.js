@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
-import { Button, FlatList, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useEffect, useState } from 'react';
+import { 
+  Button, FlatList, StyleSheet, 
+  Text, TextInput, View 
+} from 'react-native';
 import { initializeApp, getApps } from 'firebase/app';
 import { 
-  initializeFirestore, collection, getDocs, query,
+  getFirestore, collection, getDocs, query,
   doc, addDoc, getDoc, onSnapshot
 } from "firebase/firestore";
 import { firebaseConfig } from './Secrets';
@@ -11,10 +14,7 @@ let app;
 if (getApps().length == 0){
   app = initializeApp(firebaseConfig);
 } 
-const db = initializeFirestore(app, {
-  useFetchStreams: false
-});
-
+const db = getFirestore(app);
 
 export default function App() {
 
@@ -48,17 +48,14 @@ export default function App() {
         <Button
           title="Send"
           onPress={()=>{
-            setMessages(oldMessages=>{
-              let newMessages = Array.from(oldMessages);
-              let ts = Date.now();
-              newMessages.push({
-                author: authorText,
-                text: inputText,
-                timestamp: ts,
-                key: '' + ts
-              });
-              return newMessages;
-            });
+            let newMessage = {
+              author: authorText,
+              text: inputText,
+              timestamp: Date.now(),
+              key: Date.now()
+            }
+            let newMessages = messages.concat(newMessage);
+            setMessages(newMessages);
             setInputText('');
           }}
         />
@@ -67,7 +64,6 @@ export default function App() {
         <FlatList
           data={messages}
           renderItem={({item})=>{
-            console.log(item);
             return (
               <View style={[
                 styles.messageContainer
