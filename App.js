@@ -51,8 +51,8 @@ export default function App() {
             let newMessage = {
               author: authorText,
               text: inputText,
-              timestamp: Date.now(),
-              key: Date.now()
+              timestamp: new Date(),
+              key: new Date().getTime()
             }
             let newMessages = messages.concat(newMessage);
             setMessages(newMessages);
